@@ -202,9 +202,10 @@ function prepareCoffee() {
   prepareButton.disabled = true;
   showMachineMessage("Calentando agua...");
 
-  setTimeout(() => showMachineMessage("Moliendo café..."), 1000);
-  setTimeout(() => showMachineMessage("Preparando tu bebida..."), 2200);
-  setTimeout(finishOrder, 3800);
+  /* Cada mensaje permanece visible durante unos 2 segundos. */
+  setTimeout(() => showMachineMessage("Moliendo café..."), 2000);
+  setTimeout(() => showMachineMessage("Preparando tu bebida..."), 4000);
+  setTimeout(finishOrder, 6000);
 }
 
 /* Al terminar mostramos la bebida, calculamos el vuelto y bloqueamos el pedido. */
