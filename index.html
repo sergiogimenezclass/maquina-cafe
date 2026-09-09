@@ -117,14 +117,14 @@
       <button class="prepare-button" id="prepare-button" type="button" disabled>Preparar café</button>
       <button class="reset-button" id="reset-button" type="button">Reiniciar pedido</button>
       <p class="prepare-help" id="change-message">Completá el pago para continuar.</p>
+
+      <!-- La salida forma parte del panel de control para permanecer siempre visible. -->
+      <section class="pickup-tray" aria-labelledby="pickup-title">
+        <div class="tray-slot" id="pickup-slot" aria-live="polite"><span class="cup-icon">☕</span><strong id="pickup-drink"></strong></div>
+        <div class="pickup-copy"><p class="eyebrow">Salida del pedido</p><h2 id="pickup-title">Retirá tu café aquí</h2><p id="pickup-message">La bandeja se iluminará cuando tu bebida esté lista.</p></div>
+      </section>
     </aside>
   </main>
-
-  <!-- Esta zona representa físicamente la salida de la máquina. -->
-  <section class="pickup-tray" aria-labelledby="pickup-title">
-    <div class="tray-slot" id="pickup-slot" aria-live="polite"><span class="cup-icon">☕</span><strong id="pickup-drink"></strong></div>
-    <div class="pickup-copy"><p class="eyebrow">Salida del pedido</p><h2 id="pickup-title">Retirá tu café aquí</h2><p id="pickup-message">La bandeja se iluminará cuando tu bebida esté lista.</p></div>
-  </section>
 
   <!-- El script se carga al final, cuando todos los elementos HTML ya existen. -->
   <script src="js/app.js"></script>

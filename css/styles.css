@@ -185,7 +185,7 @@ h1, h2, h3 { font-family: "Fraunces", serif; }
 
 /* El panel derecho imita la pantalla y el pago de una máquina real. */
 .order-panel { align-self: start; padding: 12px; background: #2a302c; }
-.screen-status { display: flex; align-items: center; gap: 9px; padding: 5px 5px 13px; color: #aeb5b0; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.screen-status { display: flex; align-items: center; gap: 9px; min-height: 46px; padding: 10px 12px; border: 1px solid #4c564f; border-radius: 12px; color: #d9f0ce; background: #101b15; font-size: 15px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 .screen-status .status-light { width: 8px; height: 8px; }
 .machine-screen { padding: 22px; border: 1px solid #4c564f; border-radius: 14px; color: #d9f0ce; background: #101b15; box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.35); }
 .screen-label { margin-bottom: 4px; color: #799181; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
@@ -232,8 +232,8 @@ body.is-preparing .reset-button {
 }
 
 /* FLEXBOX arma la base de la máquina con la ranura y su explicación. */
-.pickup-tray { justify-content: center; gap: 24px; width: 92%; max-width: 1500px; min-height: 170px; margin: 0 auto 40px; padding: 22px 5%; border: 1px solid #343a36; border-radius: 22px; background: #080a09; box-shadow: inset 0 18px 38px rgba(0, 0, 0, 0.75); }
-.tray-slot { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 180px; height: 105px; border: 2px solid #383f3a; border-bottom: 5px solid #f0a05a; border-radius: 14px 14px 7px 7px; background: #111512; }
+.pickup-tray { justify-content: center; gap: 14px; width: 100%; min-height: 112px; margin: 12px 0 0; padding: 12px; border: 1px solid #343a36; border-radius: 14px; background: #080a09; box-shadow: inset 0 18px 38px rgba(0, 0, 0, 0.75); }
+.tray-slot { display: flex; flex: 0 0 auto; flex-direction: column; align-items: center; justify-content: center; width: 105px; height: 82px; border: 2px solid #383f3a; border-bottom: 5px solid #f0a05a; border-radius: 14px 14px 7px 7px; background: #111512; }
 .cup-icon { font-size: 42px; filter: grayscale(100%); opacity: 0.35; }
 .tray-slot strong { display: none; color: #f5b77f; font-size: 12px; }
 
@@ -241,9 +241,9 @@ body.is-preparing .reset-button {
 .pickup-tray.is-ready { border-color: #f0a05a; box-shadow: inset 0 18px 38px rgba(0, 0, 0, 0.75), 0 0 24px rgba(240, 160, 90, 0.25); }
 .pickup-tray.is-ready .cup-icon { filter: none; opacity: 1; }
 .pickup-tray.is-ready .tray-slot strong { display: block; }
-.pickup-copy { max-width: 420px; }
-.pickup-copy h2 { margin-bottom: 5px; font-size: 25px; }
-.pickup-copy > p:last-child { margin-bottom: 0; color: #8f9691; font-size: 13px; }
+.pickup-copy { max-width: 230px; }
+.pickup-copy h2 { margin-bottom: 3px; font-size: 18px; }
+.pickup-copy > p:last-child { margin-bottom: 0; color: #8f9691; font-size: 11px; }
 
 /* Desde 620px, el catálogo muestra dos tarjetas por fila. */
 @media (min-width: 620px) {
@@ -260,8 +260,46 @@ body.is-preparing .reset-button {
 
 /* En monitores grandes aparecen las tres zonas lado a lado. */
 @media (min-width: 1220px) {
-  .machine-layout { grid-template-columns: 42% 27% 27%; gap: 2%; }
+  /*
+    En escritorio, la máquina completa ocupa una sola pantalla.
+    Las alturas compactas evitan separar controles, mensajes y bandeja.
+  */
+  body { overflow: hidden; }
+  .machine-header { min-height: 64px; padding: 6px 0; }
+  .brand-mark { width: 44px; height: 44px; }
+  .brand-copy strong { font-size: 19px; }
+  .machine-layout { grid-template-columns: 42% 27% 27%; gap: 2%; height: 640px; margin-top: 12px; margin-bottom: 12px; }
   .drinks-panel, .customize-panel, .order-panel { grid-column: auto; grid-row: auto; }
+  .machine-panel { height: 100%; padding: 16px; }
+  .order-panel { height: 100%; padding: 10px; overflow: hidden; }
+  .panel-heading { margin-bottom: 12px; }
+  .panel-heading--small { padding-bottom: 12px; }
+  .step-number { width: 36px; height: 36px; }
+  .panel-heading h1, .panel-heading h2 { font-size: 23px; }
+  .drinks-grid { height: 550px; gap: 10px; }
+  .drink-card { min-height: 0; }
+  .drink-image { height: 104px; }
+  .drink-content { padding: 11px; }
+  .drink-title h2 { margin-bottom: 3px; font-size: 17px; }
+  .drink-content p { margin-bottom: 8px; font-size: 12px; line-height: 1.25; }
+  .drink-content button { min-height: 34px; }
+  .option-group { margin-bottom: 12px; padding-bottom: 12px; }
+  .control-row { padding: 11px 0; }
+  .machine-screen { padding: 12px; }
+  .machine-screen h2 { margin-bottom: 5px; font-size: 23px; }
+  .order-details { padding-bottom: 10px; }
+  .total-row { padding-top: 9px; }
+  .total-row strong { font-size: 22px; }
+  .credit-box { margin-top: 8px; padding: 9px; }
+  .credit-box strong { font-size: 20px; }
+  .payment-area { padding: 10px 0 0; }
+  .money-buttons button { min-height: 34px; }
+  .prepare-button { min-height: 40px; margin-top: 10px; }
+  .reset-button { min-height: 34px; }
+  .prepare-help { margin-bottom: 0; }
+  .pickup-tray { min-height: 92px; margin-top: 8px; padding: 8px; }
+  .tray-slot { width: 86px; height: 68px; }
+  .cup-icon { font-size: 31px; }
 }
 
 /* En celulares angostos, la cabecera y la bandeja se apilan. */
