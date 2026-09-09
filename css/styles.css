@@ -129,7 +129,11 @@ h1, h2, h3 { font-family: "Fraunces", serif; }
   background: #f0a05a;
   font-size: 11px;
   font-weight: 700;
+  display: none;
 }
+
+/* JavaScript agrega .is-selected solamente a la bebida elegida. */
+.drink-card.is-selected .selected-label { display: block; }
 
 .drink-content { display: flex; flex: 1; flex-direction: column; padding: 16px; }
 .drink-title { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
@@ -202,12 +206,41 @@ h1, h2, h3 { font-family: "Fraunces", serif; }
 .money-buttons button { flex: 1; min-width: 68px; min-height: 42px; border: 1px solid #555d58; border-radius: 9px; color: #f5eee5; background: #202522; font-size: 12px; font-weight: 700; cursor: pointer; }
 .prepare-button { width: 100%; min-height: 54px; margin-top: 18px; border: 0; border-radius: 12px; color: #737a75; background: #3c423e; font-size: 16px; font-weight: 700; }
 .prepare-button:not(:disabled) { color: #211713; background: #f0a05a; cursor: pointer; }
+.prepare-button:disabled { cursor: not-allowed; }
 .prepare-help { margin: 8px 0 3px; color: #909792; font-size: 11px; text-align: center; }
+
+.reset-button {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 8px;
+  border: 1px solid #555d58;
+  border-radius: 12px;
+  color: #c5cac7;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Durante la preparación evitamos nuevas elecciones. */
+body.is-preparing .drink-card button,
+body.is-preparing .customize-panel button,
+body.is-preparing .money-buttons button,
+body.is-preparing .reset-button {
+  pointer-events: none;
+  opacity: 0.45;
+}
 
 /* FLEXBOX arma la base de la máquina con la ranura y su explicación. */
 .pickup-tray { justify-content: center; gap: 24px; width: 92%; max-width: 1500px; min-height: 170px; margin: 0 auto 40px; padding: 22px 5%; border: 1px solid #343a36; border-radius: 22px; background: #080a09; box-shadow: inset 0 18px 38px rgba(0, 0, 0, 0.75); }
-.tray-slot { display: flex; align-items: center; justify-content: center; width: 180px; height: 105px; border: 2px solid #383f3a; border-bottom: 5px solid #f0a05a; border-radius: 14px 14px 7px 7px; background: #111512; }
+.tray-slot { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 180px; height: 105px; border: 2px solid #383f3a; border-bottom: 5px solid #f0a05a; border-radius: 14px 14px 7px 7px; background: #111512; }
 .cup-icon { font-size: 42px; filter: grayscale(100%); opacity: 0.35; }
+.tray-slot strong { display: none; color: #f5b77f; font-size: 12px; }
+
+/* Al finalizar, JavaScript ilumina la bandeja con .is-ready. */
+.pickup-tray.is-ready { border-color: #f0a05a; box-shadow: inset 0 18px 38px rgba(0, 0, 0, 0.75), 0 0 24px rgba(240, 160, 90, 0.25); }
+.pickup-tray.is-ready .cup-icon { filter: none; opacity: 1; }
+.pickup-tray.is-ready .tray-slot strong { display: block; }
 .pickup-copy { max-width: 420px; }
 .pickup-copy h2 { margin-bottom: 5px; font-size: 25px; }
 .pickup-copy > p:last-child { margin-bottom: 0; color: #8f9691; font-size: 13px; }
@@ -239,4 +272,3 @@ h1, h2, h3 { font-family: "Fraunces", serif; }
   .pickup-tray { text-align: center; }
   .pickup-copy { max-width: 100%; }
 }
-

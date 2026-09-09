@@ -34,7 +34,7 @@
 
       <!-- Esta segunda cuadrícula ordena las cuatro tarjetas. -->
       <div class="drinks-grid">
-        <article class="drink-card is-selected">
+        <article class="drink-card" data-drink="Espresso" data-price="1800">
           <div class="drink-image"><img src="assets/images/latte.png" alt="Taza de café espresso"><span class="selected-label">Elegido</span></div>
           <div class="drink-content">
             <div class="drink-title"><h2>Espresso</h2><strong>$1.800</strong></div>
@@ -42,7 +42,7 @@
             <button type="button">Elegir</button>
           </div>
         </article>
-        <article class="drink-card">
+        <article class="drink-card" data-drink="Cortado" data-price="2200">
           <div class="drink-image drink-image--cortado"><img src="assets/images/latte.png" alt="Taza de café cortado"></div>
           <div class="drink-content">
             <div class="drink-title"><h2>Cortado</h2><strong>$2.200</strong></div>
@@ -50,7 +50,7 @@
             <button type="button">Elegir</button>
           </div>
         </article>
-        <article class="drink-card">
+        <article class="drink-card" data-drink="Latte" data-price="2800">
           <div class="drink-image drink-image--latte"><img src="assets/images/latte.png" alt="Taza de café latte"></div>
           <div class="drink-content">
             <div class="drink-title"><h2>Latte</h2><strong>$2.800</strong></div>
@@ -58,7 +58,7 @@
             <button type="button">Elegir</button>
           </div>
         </article>
-        <article class="drink-card">
+        <article class="drink-card" data-drink="Chocolate" data-price="2500">
           <div class="drink-image drink-image--chocolate"><img src="assets/images/latte.png" alt="Taza de chocolate caliente"></div>
           <div class="drink-content">
             <div class="drink-title"><h2>Chocolate</h2><strong>$2.500</strong></div>
@@ -79,53 +79,54 @@
       <!-- FIELDSET agrupa botones que responden a una misma elección. -->
       <fieldset class="option-group">
         <legend>Tamaño del vaso</legend>
-        <div class="option-buttons"><button type="button">Chico</button><button class="is-active" type="button">Mediano</button><button type="button">Grande</button></div>
+        <div class="option-buttons size-buttons"><button type="button" data-size="Chico" data-extra="0">Chico</button><button class="is-active" type="button" data-size="Mediano" data-extra="300">Mediano</button><button type="button" data-size="Grande" data-extra="600">Grande</button></div>
       </fieldset>
       <fieldset class="option-group">
         <legend>Intensidad</legend>
-        <div class="option-buttons"><button type="button">Suave</button><button class="is-active" type="button">Media</button><button type="button">Intensa</button></div>
+        <div class="option-buttons intensity-buttons"><button type="button" data-intensity="Suave">Suave</button><button class="is-active" type="button" data-intensity="Media">Media</button><button type="button" data-intensity="Intensa">Intensa</button></div>
       </fieldset>
 
       <div class="control-row">
         <div><strong>Azúcar</strong><small>Cucharaditas</small></div>
-        <div class="counter-control" aria-label="Cantidad de azúcar: 2"><button type="button" aria-label="Quitar azúcar">−</button><strong>2</strong><button type="button" aria-label="Agregar azúcar">+</button></div>
+        <div class="counter-control" aria-label="Cantidad de azúcar: 0"><button id="decrease-sugar" type="button" aria-label="Quitar azúcar">−</button><strong id="sugar-count">0</strong><button id="increase-sugar" type="button" aria-label="Agregar azúcar">+</button></div>
       </div>
       <div class="control-row">
         <div><strong>Leche extra</strong><small>Agrega $300</small></div>
-        <div class="binary-control"><button class="is-active" type="button">No</button><button type="button">Sí</button></div>
+        <div class="binary-control milk-buttons"><button class="is-active" type="button" data-milk="false">No</button><button type="button" data-milk="true">Sí</button></div>
       </div>
     </section>
 
     <!-- ZONA 3: resumen, crédito y preparación. -->
     <aside class="order-panel" aria-labelledby="order-title">
-      <div class="screen-status"><span class="status-light" aria-hidden="true"></span>Lista para preparar</div>
+      <div class="screen-status" id="machine-message"><span class="status-light" aria-hidden="true"></span>Elegí una bebida</div>
       <div class="machine-screen">
         <p class="screen-label">Tu pedido</p>
-        <h2 id="order-title">Espresso</h2>
-        <div class="order-details"><span>Mediano</span><span>Intensidad media</span><span>2 de azúcar</span></div>
-        <div class="total-row"><span>Total</span><strong>$2.100</strong></div>
+        <h2 id="order-title">Sin selección</h2>
+        <div class="order-details"><span id="order-size">Mediano</span><span id="order-intensity">Intensidad media</span><span id="order-sugar">Sin azúcar</span><span id="order-milk">Sin leche extra</span></div>
+        <div class="total-row"><span>Total</span><strong id="order-total">$0</strong></div>
       </div>
       <div class="credit-box">
-        <span><small>Crédito ingresado</small><strong>$0</strong></span>
-        <span class="credit-help">Faltan $2.100</span>
+        <span><small>Crédito ingresado</small><strong id="order-credit">$0</strong></span>
+        <span class="credit-help" id="credit-help">Elegí una bebida</span>
       </div>
       <div class="payment-area">
         <p>Ingresá dinero</p>
-        <div class="money-buttons"><button type="button">+$500</button><button type="button">+$1.000</button><button type="button">+$2.000</button><button type="button">+$5.000</button></div>
+        <div class="money-buttons"><button type="button" data-amount="500">+$500</button><button type="button" data-amount="1000">+$1.000</button><button type="button" data-amount="2000">+$2.000</button><button type="button" data-amount="5000">+$5.000</button></div>
       </div>
       <!-- JavaScript podrá quitar disabled cuando el crédito sea suficiente. -->
-      <button class="prepare-button" type="button" disabled>Preparar café</button>
-      <p class="prepare-help">Completá el pago para continuar.</p>
+      <button class="prepare-button" id="prepare-button" type="button" disabled>Preparar café</button>
+      <button class="reset-button" id="reset-button" type="button">Reiniciar pedido</button>
+      <p class="prepare-help" id="change-message">Completá el pago para continuar.</p>
     </aside>
   </main>
 
   <!-- Esta zona representa físicamente la salida de la máquina. -->
   <section class="pickup-tray" aria-labelledby="pickup-title">
-    <div class="tray-slot" aria-hidden="true"><span class="cup-icon">☕</span></div>
-    <div class="pickup-copy"><p class="eyebrow">Salida del pedido</p><h2 id="pickup-title">Retirá tu café aquí</h2><p>La bandeja se iluminará cuando tu bebida esté lista.</p></div>
+    <div class="tray-slot" id="pickup-slot" aria-live="polite"><span class="cup-icon">☕</span><strong id="pickup-drink"></strong></div>
+    <div class="pickup-copy"><p class="eyebrow">Salida del pedido</p><h2 id="pickup-title">Retirá tu café aquí</h2><p id="pickup-message">La bandeja se iluminará cuando tu bebida esté lista.</p></div>
   </section>
 
-  <!-- No cargamos JavaScript: esta primera etapa es solo HTML y CSS. -->
+  <!-- El script se carga al final, cuando todos los elementos HTML ya existen. -->
+  <script src="js/app.js"></script>
 </body>
 </html>
-
