@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interfaz de una máquina expendedora de café para practicar HTML y CSS.">
+  <title>Café Punto | Máquina de café</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- FLEXBOX alinea la marca y el estado dentro de la cabecera. -->
+  <header class="machine-header">
+    <a class="brand" href="#bebidas" aria-label="Café Punto, ir a las bebidas">
+      <span class="brand-mark" aria-hidden="true">CP</span>
+      <span class="brand-copy"><strong>Café Punto</strong><small>Café recién hecho, sin esperas</small></span>
+    </a>
+    <div class="machine-status" aria-label="Estado de la máquina: disponible">
+      <span class="status-light" aria-hidden="true"></span>
+      <span><small>Estado</small><strong>Disponible</strong></span>
+    </div>
+  </header>
+
+  <!-- GRID distribuye las tres zonas principales de la máquina. -->
+  <main class="machine-layout">
+    <!-- ZONA 1: catálogo de bebidas. -->
+    <section class="machine-panel drinks-panel" id="bebidas" aria-labelledby="drinks-title">
+      <div class="panel-heading">
+        <span class="step-number">1</span>
+        <div><p class="eyebrow">Primer paso</p><h1 id="drinks-title">Elegí tu café</h1></div>
+      </div>
+
+      <!-- Esta segunda cuadrícula ordena las cuatro tarjetas. -->
+      <div class="drinks-grid">
+        <article class="drink-card is-selected">
+          <div class="drink-image"><img src="assets/images/latte.png" alt="Taza de café espresso"><span class="selected-label">Elegido</span></div>
+          <div class="drink-content">
+            <div class="drink-title"><h2>Espresso</h2><strong>$1.800</strong></div>
+            <p>Café corto, aromático y de sabor intenso.</p>
+            <button type="button">Elegir</button>
+          </div>
+        </article>
+        <article class="drink-card">
+          <div class="drink-image drink-image--cortado"><img src="assets/images/latte.png" alt="Taza de café cortado"></div>
+          <div class="drink-content">
+            <div class="drink-title"><h2>Cortado</h2><strong>$2.200</strong></div>
+            <p>Espresso con un toque suave de leche caliente.</p>
+            <button type="button">Elegir</button>
+          </div>
+        </article>
+        <article class="drink-card">
+          <div class="drink-image drink-image--latte"><img src="assets/images/latte.png" alt="Taza de café latte"></div>
+          <div class="drink-content">
+            <div class="drink-title"><h2>Latte</h2><strong>$2.800</strong></div>
+            <p>Café suave con leche cremosa y abundante espuma.</p>
+            <button type="button">Elegir</button>
+          </div>
+        </article>
+        <article class="drink-card">
+          <div class="drink-image drink-image--chocolate"><img src="assets/images/latte.png" alt="Taza de chocolate caliente"></div>
+          <div class="drink-content">
+            <div class="drink-title"><h2>Chocolate</h2><strong>$2.500</strong></div>
+            <p>Chocolate caliente, dulce y bien cremoso.</p>
+            <button type="button">Elegir</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ZONA 2: controles estáticos de personalización. -->
+    <section class="machine-panel customize-panel" aria-labelledby="customize-title">
+      <div class="panel-heading panel-heading--small">
+        <span class="step-number">2</span>
+        <div><p class="eyebrow">Segundo paso</p><h2 id="customize-title">Personalizalo</h2></div>
+      </div>
+
+      <!-- FIELDSET agrupa botones que responden a una misma elección. -->
+      <fieldset class="option-group">
+        <legend>Tamaño del vaso</legend>
+        <div class="option-buttons"><button type="button">Chico</button><button class="is-active" type="button">Mediano</button><button type="button">Grande</button></div>
+      </fieldset>
+      <fieldset class="option-group">
+        <legend>Intensidad</legend>
+        <div class="option-buttons"><button type="button">Suave</button><button class="is-active" type="button">Media</button><button type="button">Intensa</button></div>
+      </fieldset>
+
+      <div class="control-row">
+        <div><strong>Azúcar</strong><small>Cucharaditas</small></div>
+        <div class="counter-control" aria-label="Cantidad de azúcar: 2"><button type="button" aria-label="Quitar azúcar">−</button><strong>2</strong><button type="button" aria-label="Agregar azúcar">+</button></div>
+      </div>
+      <div class="control-row">
+        <div><strong>Leche extra</strong><small>Agrega $300</small></div>
+        <div class="binary-control"><button class="is-active" type="button">No</button><button type="button">Sí</button></div>
+      </div>
+    </section>
+
+    <!-- ZONA 3: resumen, crédito y preparación. -->
+    <aside class="order-panel" aria-labelledby="order-title">
+      <div class="screen-status"><span class="status-light" aria-hidden="true"></span>Lista para preparar</div>
+      <div class="machine-screen">
+        <p class="screen-label">Tu pedido</p>
+        <h2 id="order-title">Espresso</h2>
+        <div class="order-details"><span>Mediano</span><span>Intensidad media</span><span>2 de azúcar</span></div>
+        <div class="total-row"><span>Total</span><strong>$2.100</strong></div>
+      </div>
+      <div class="credit-box">
+        <span><small>Crédito ingresado</small><strong>$0</strong></span>
+        <span class="credit-help">Faltan $2.100</span>
+      </div>
+      <div class="payment-area">
+        <p>Ingresá dinero</p>
+        <div class="money-buttons"><button type="button">+$500</button><button type="button">+$1.000</button><button type="button">+$2.000</button><button type="button">+$5.000</button></div>
+      </div>
+      <!-- JavaScript podrá quitar disabled cuando el crédito sea suficiente. -->
+      <button class="prepare-button" type="button" disabled>Preparar café</button>
+      <p class="prepare-help">Completá el pago para continuar.</p>
+    </aside>
+  </main>
+
+  <!-- Esta zona representa físicamente la salida de la máquina. -->
+  <section class="pickup-tray" aria-labelledby="pickup-title">
+    <div class="tray-slot" aria-hidden="true"><span class="cup-icon">☕</span></div>
+    <div class="pickup-copy"><p class="eyebrow">Salida del pedido</p><h2 id="pickup-title">Retirá tu café aquí</h2><p>La bandeja se iluminará cuando tu bebida esté lista.</p></div>
+  </section>
+
+  <!-- No cargamos JavaScript: esta primera etapa es solo HTML y CSS. -->
+</body>
+</html>
+
